@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark"> <head>
+<html lang="en" data-theme="dark"> 
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chirper Home</title>
@@ -9,75 +10,35 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-   <style>
-    body {
-        transition: background 0.5s ease, color 0.5s ease;
-    }
-
-    /* TEMA TERANG (LOFI) - SESUAI FIGMA BARU */
-    [data-theme="lofi"] body {
-        /* Arah diagonal dari pojok kiri bawah ke kanan atas sesuai garis Figma */
-        background: linear-gradient(45deg, #A4A4F2 0%, #F1F1FB 100%) !important;
-        background-attachment: fixed;
-        color: #343456 !important; /* Gunakan ungu gelap figma untuk teks agar senada */
-    }
-
-    /* TEMA GELAP (CUSTOM FIGMA) - Tetap Ungu Gelap */
-    [data-theme="dark"] body {
-        background: linear-gradient(215deg, #343456 0%, #7373BC 100%) !important;
-        background-attachment: fixed;
-        color: #ffffff !important;
-    }
-
-    /* Kartu agar terlihat menyatu dengan background */
-    .card {
-        background-color: rgba(255, 255, 255, 0.4);
-        backdrop-filter: blur(15px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1); /* Shadow halus agar tidak kaku */
-    }
+    <style>
+        body { transition: background 0.5s ease, color 0.5s ease; }
+        [data-theme="lofi"] body {
+            background: linear-gradient(45deg, #A4A4F2 0%, #F1F1FB 100%) !important;
+            background-attachment: fixed;
+            color: #343456 !important;
+        }
+        [data-theme="dark"] body {
+            background: linear-gradient(215deg, #343456 0%, #7373BC 100%) !important;
+            background-attachment: fixed;
+            color: #ffffff !important;
+        }
+        .card {
+            background-color: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
     </style>
 </head>
 
 <body class="min-h-screen flex flex-col font-sans">
     <nav class="navbar bg-base-100 shadow-md transition-colors duration-500">
         <div class="navbar-start">
-    <button onclick="modal_about.showModal()" class="btn btn-ghost text-xl flex items-center gap-2 normal-case border-none bg-transparent">
-        <img src="{{ asset('gambar-angel.png') }}" alt="Chirper Logo" class="h-8 w-8 object-contain">
-        <span class="font-bold">Chirper</span>
-    </button>
-</div>
-
-        <dialog id="modal_about" class="modal">
-            <div class="modal-box bg-base-100 border-l-4 border-[#7373BC]">
-                <div class="flex items-center gap-4 mb-4">
-                    <div class="avatar">
-                        <div class="w-16 rounded-full ring ring-[#7373BC] ring-offset-base-100 ring-offset-2">
-                            <img src="{{ asset('gambar-angel.png') }}" />
-                        </div>
-                    </div>
-                <div>
-                    <h3 class="font-bold text-lg">Tentang Chirper</h3>
-                    <p class="text-xs opacity-60">Versi 1.0 (Alpha)</p>
-                </div>
-            </div>
-        
-        <p class="py-2 text-sm leading-relaxed">
-            **Chirper** adalah Project Laravel sederhana yang sedang dibangun oleh **Hafiz Abdillah Nugraha(230170145)**. 
-            Project ini dikembangkan menggunakan **Laravel 11**, **Tailwind CSS**, dan **DaisyUI** sebagai bagian dari tugas mata kuliah pemrograman Web Lanjut Teknik Informatika di Universitas Malikussaleh.
-        </p>
-
-        <div class="modal-action">
-            <form method="dialog">
-                <button class="btn btn-sm btn-outline border-[#7373BC] text-[#7373BC] hover:bg-[#7373BC] hover:text-white">Tutup</button>
-            </form>
+            <button onclick="modal_about.showModal()" class="btn btn-ghost text-xl flex items-center gap-2 normal-case border-none bg-transparent">
+                <img src="{{ asset('gambar-angel.png') }}" alt="Chirper Logo" class="h-8 w-8 object-contain">
+                <span class="font-bold text-base-content">Chirper</span>
+            </button>
         </div>
-    </div>
-    <form method="dialog" class="modal-backdrop bg-black/40">
-        <button>close</button>
-    </form>
-</dialog>
-        
+
         <div class="navbar-end gap-2">
             <label class="btn btn-ghost btn-circle swap swap-rotate">
                 <input type="checkbox" id="theme-toggle" />
@@ -87,82 +48,134 @@
         </div>
     </nav>
 
+    <!-- MODAL ABOUT -->
+    <dialog id="modal_about" class="modal">
+        <div class="modal-box bg-base-100 border-l-4 border-[#7373BC]">
+            <div class="flex items-center gap-4 mb-4">
+                <div class="avatar">
+                    <div class="w-16 rounded-full ring ring-[#7373BC] ring-offset-base-100 ring-offset-2">
+                        <img src="{{ asset('gambar-angel.png') }}" />
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-bold text-lg">Tentang Chirper</h3>
+                    <p class="text-xs opacity-60">Versi 1.0 (Alpha)</p>
+                </div>
+            </div>
+            <p class="py-2 text-sm leading-relaxed">
+                **Chirper** adalah Project Laravel sederhana yang dibangun oleh **Hafiz Abdillah Nugraha(230170145)**.
+            </p>
+            <div class="modal-action">
+                <form method="dialog"><button class="btn btn-sm btn-outline border-[#7373BC]">Tutup</button></form>
+            </div>
+        </div>
+    </dialog>
+
     <main class="flex-1 container mx-auto px-4 py-8">
         <div class="max-w-2xl mx-auto">
             <div class="card shadow-2xl mt-8 bg-base-100 transition-colors duration-500"> 
                 <div class="card-body flex flex-col items-center text-center"> 
                     <img src="{{ asset('welcome.gif') }}" alt="Welcome Animation" class="w-64 h-auto mb-6 rounded-lg">
-                    <div>
-                        <h1 class="text-3xl font-bold">Welcome to Chirper!</h1>
-                        <p class="mt-4 opacity-70">This is your brand new Laravel application. Time to make it sing (or chirp)!</p>
-
-                        <div class="mt-8">
-                            <button onclick="my_modal_1.showModal()" class="btn btn-wide bg-[#7373BC] hover:bg-[#343456] text-white border-none shadow-lg transform transition hover:scale-105">
-                                 Getting Started
-                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 ml-2">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                                </svg>
-                            </button>
-                        </div>
-
-                        <dialog id="my_modal_1" class="modal modal-bottom sm:modal-middle transition-all duration-300">
-    <div class="modal-box bg-base-100 border border-[#7373BC]/20 p-8 shadow-2xl">
-        
-        <div class="flex justify-center mb-6">
-            <img src="{{ asset('yui-stop.png') }}" 
-                 alt="Under Construction Animation" 
-                 class="w-60 h-auto rounded-full bg-[#A4A4F2]/10 p-2 border-4 border-[#7373BC]/20 shadow-inner">
-        </div>
-
-        <div class="text-center">
-            <h3 class="text-2xl font-bold flex items-center justify-center gap-2">
-                🚧 STOOOPPP!!!
-            </h3>
-            <p class="py-5 text-base-content/70 leading-relaxed">
-                Halo, Sobat Terima kasih sudah mampir.<br>
-                <span class="font-semibold text-[#7373BC]">Tapi maaf ni, Web Chirper ini sedang dalam tahap pembuatan.</span><br>
-                fitur ini masih dalam pengerjaan. Nantikan update selanjutnya ya!
-            </p>
-        </div>
-
-        <div class="modal-action justify-center">
-            <form method="dialog">
-                <button class="btn btn-sm btn-wide bg-[#343456] hover:bg-[#7373BC] text-white border-none rounded-full transform transition hover:scale-105 shadow-md">
-                    OKE SIP!
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <form method="dialog" class="modal-backdrop bg-black/50 backdrop-blur-sm">
-        <button>close</button>
-    </form>
-</dialog>
+                    <h1 class="text-3xl font-bold">Welcome to Chirper!</h1>
+                    <p class="mt-4 opacity-70 text-base-content">This is your brand new Laravel application. Time to chirp!</p>
+                    
+                    <div class="mt-8">
+                        <button onclick="modal_chirp.showModal()" class="btn btn-wide bg-[#7373BC] hover:bg-[#343456] text-white border-none shadow-lg transform transition hover:scale-105">
+                            Getting Started
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </main>
 
-    <footer class="footer footer-center p-5 bg-base-100 transition-colors duration-500 text-xs">
-        <div>
-            <p>© 2026 Chirper - Built With Laravel and ❤️ Hafiz Abdillah Nugraha(230170145)</p>
+    <!-- AREA DAFTAR PESAN -->
+    <section class="container mx-auto px-4 pb-20">
+        <div class="max-w-2xl mx-auto">
+            <div class="flex items-center justify-between mb-6 px-4">
+                <h2 class="text-sm font-bold text-white/50 uppercase tracking-[0.2em]">Recent Chirps</h2>
+                <button onclick="clearHistory()" class="text-[10px] bg-red-500/20 hover:bg-red-500/40 text-red-200 px-3 py-1 rounded-full transition-all">
+                    Hapus Semua
+                </button> <!-- SEBELUMNYA DI SINI SALAH PAKAI </div> -->
+            </div>
+            <div id="chirp_history_main" class="space-y-4"></div>
         </div>
+    </section>
+
+    <!-- MODAL CHIRP -->
+    <dialog id="modal_chirp" class="modal">
+        <div class="modal-box bg-base-100 p-0 rounded-2xl border border-base-300 shadow-2xl overflow-hidden max-w-lg">
+            <div class="flex items-center justify-between px-6 py-4 border-b border-base-200">
+                <h3 class="font-bold text-base-content">What's on your mind?</h3>
+                <form method="dialog"><button class="btn btn-sm btn-circle btn-ghost">✕</button></form>
+            </div>
+            <div class="p-6 space-y-4">
+                <textarea id="chirp_content" placeholder="Tulis sesuatu..." class="textarea textarea-bordered w-full h-32 bg-base-200 text-base-content"></textarea>
+                <div class="flex justify-end">
+                    <button onclick="saveChirp()" class="btn bg-[#5479D1] text-white border-none px-10">Chirp</button>
+                </div>
+            </div>
+        </div>
+    </dialog>
+
+    <footer class="footer footer-center p-5 bg-base-100 text-xs">
+        <p>© 2026 Chirper - Built With Laravel and ❤️ Hafiz Abdillah Nugraha(230170145)</p>
     </footer>
 
     <script>
-    const themeToggle = document.querySelector('#theme-toggle');
-    const html = document.querySelector('html');
+        const themeToggle = document.querySelector('#theme-toggle');
+        const html = document.querySelector('html');
 
-    themeToggle.addEventListener('change', () => {
-        if (themeToggle.checked) {
-            // Jika dicentang, ganti ke terang (lofi)
-            html.setAttribute('data-theme', 'lofi');
-        } else {
-            // Jika tidak dicentang, ganti ke gelap (dark)
-            html.setAttribute('data-theme', 'dark');
+        if (themeToggle) {
+            themeToggle.addEventListener('change', () => {
+                html.setAttribute('data-theme', themeToggle.checked ? 'lofi' : 'dark');
+            });
         }
-    });
+
+        document.addEventListener('DOMContentLoaded', () => { displayChirps(); });
+
+        function saveChirp() {
+            const content = document.getElementById('chirp_content').value;
+            if (!content.trim()) return;
+
+            const existingChirps = JSON.parse(localStorage.getItem('chirp_history')) || [];
+            existingChirps.unshift({
+                text: content,
+                time: new Date().toLocaleString('id-ID', { dateStyle: 'medium', timeStyle: 'short' })
+            });
+            localStorage.setItem('chirp_history', JSON.stringify(existingChirps));
+            document.getElementById('chirp_content').value = "";
+            modal_chirp.close();
+            displayChirps();
+        }
+
+        function displayChirps() {
+            const container = document.getElementById('chirp_history_main');
+            if (!container) return;
+            const chirps = JSON.parse(localStorage.getItem('chirp_history')) || [];
+            
+            if (chirps.length === 0) {
+                container.innerHTML = '<div class="p-10 text-center border-2 border-dashed border-white/10 rounded-2xl text-white/30 italic text-sm">Belum ada aktivitas.</div>';
+                return;
+            }
+
+            container.innerHTML = chirps.map(chirp => `
+                <div class="bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-2xl shadow-xl transition-all mb-4">
+                    <p class="text-white text-lg">${chirp.text}</p>
+                    <div class="mt-4 flex justify-between items-center opacity-40 text-[9px] text-white font-bold uppercase tracking-widest">
+                        <span>Local Storage Data</span>
+                        <span>${chirp.time}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function clearHistory() {
+            if (confirm("Hapus semua pesan?")) {
+                localStorage.removeItem('chirp_history');
+                displayChirps();
+            }
+        }
     </script>
 </body>
 </html>
